@@ -1281,6 +1281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 100
+  tapThrust: 100
 --- !u!50 &1023088256
 Rigidbody2D:
   serializedVersion: 4
@@ -2087,6 +2088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 3
   player: {fileID: 1023088255}
+  threshold: 0.4
 --- !u!1 &1735054218
 GameObject:
   m_ObjectHideFlags: 0
@@ -2313,11 +2315,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5176471}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.5176471}
-    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.5176471}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5176471}
-    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.028435374, g: 0.6698113, b: 0.11188405, a: 0.7019608}
+    m_HighlightedColor: {r: 0.9528302, g: 0, b: 0, a: 0.80784315}
+    m_PressedColor: {r: 0.272384, g: 0, b: 0.38679248, a: 0.5176471}
+    m_SelectedColor: {r: 0, g: 0.064770654, b: 0.5188679, a: 0.5176471}
+    m_DisabledColor: {r: 0.013883919, g: 0.9811321, b: 0.8699742, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2388,6 +2390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 1
   player: {fileID: 1023088255}
+  threshold: 0.4
 --- !u!1 &1819850134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2525,6 +2528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 2
   player: {fileID: 1023088255}
+  threshold: 0.4
 --- !u!1 &1858176947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2662,6 +2666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 0
   player: {fileID: 1023088255}
+  threshold: 0.4
 --- !u!1 &2074222587
 GameObject:
   m_ObjectHideFlags: 0
