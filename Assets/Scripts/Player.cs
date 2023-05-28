@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [SerializeField] float playerSpeed = 100f;
+    [SerializeField] float tapThrust = 100f;
 
     Rigidbody2D myRigidBody2d;
 
@@ -26,7 +27,20 @@ public class Player : MonoBehaviour
     }
 
     private void OnMove(InputValue value) {
+        OnMoveButtonTapped(value.Get<Vector2>());
         movementInput = value.Get<Vector2>();
+    }
+
+    public void OnMoveButtonTapped(Vector2 direction) {
+        myRigidBody2d.AddForce(direction * tapThrust);
+    }
+
+    public void OnMoveButonPressed(Vector2 direction) {
+        movementInput = direction;
+    }
+
+    public void OnMoveButtonReleased() {
+        movementInput = Vector2.zero;
     }
 
 }
