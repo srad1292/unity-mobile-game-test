@@ -11,9 +11,12 @@ public class Player : MonoBehaviour
 
     Rigidbody2D myRigidBody2d;
 
-    private Vector2 movementInput;
+    private Vector3 movementInput;
+    private Placer held;
+    private List<Placer> heldPlacers;
 
     private void Start() {
+        heldPlacers = new List<Placer>();
         movementInput = Vector2.zero;
         myRigidBody2d = GetComponent<Rigidbody2D>();
     }
@@ -24,7 +27,44 @@ public class Player : MonoBehaviour
 
     private void MovePlayer() {
         myRigidBody2d.velocity = movementInput * playerSpeed * Time.fixedDeltaTime;
+        if (movementInput != Vector3.zero && heldPlacers.Count > 0) {
+            // This works, maybe I could switch it back to array and just do moveInput * (-1f * (index+1)) 
+            //held.transform.position = transform.position + (movementInput * -1f);
+            for (int idx = 0; idx < heldPlacers.Count; idx++) {
+                heldPlacers[idx].transform.position = transform.position + (movementInput * -0.6f * (idx+1));
+            }
+        }
     }
+
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Goal") {
+            if(heldPlacers.Count == 0 ) { return; }
+
+            Goal goal = other.GetComponent<Goal>();
+            int matchingIndex = heldPlacers.FindIndex(placer => placer.myColor == goal.myColor);
+            if (!goal.filled && matchingIndex >= 0) {
+                FillGoal(goal, matchingIndex);
+            }
+        }
+        else if (other.tag == "Placer") {
+            print("I hit a placer!");
+            Placer placer = other.GetComponent<Placer>();
+            placer.Pickup();
+            //held = placer;
+            //held.transform.position = transform.position + (movementInput * -1f);
+            heldPlacers.Add(placer);
+            heldPlacers[heldPlacers.Count-1].transform.position = transform.position + (movementInput * -0.6f * (heldPlacers.Count));
+
+        }
+    }
+
+    private void FillGoal(Goal goal, int placerIndex) {
+        heldPlacers[placerIndex].SetPlacer(goal);
+        heldPlacers.RemoveAt(placerIndex);
+    }
+
+
 
     private void OnMove(InputValue value) {
         OnMoveButtonTapped(value.Get<Vector2>());
