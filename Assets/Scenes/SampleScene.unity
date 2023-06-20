@@ -2832,6 +2832,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 200
   tapThrust: 200
+  placersToPlace: 4
+  gameUI: {fileID: 571490386}
 --- !u!50 &1023088256
 Rigidbody2D:
   serializedVersion: 4
@@ -2952,7 +2954,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1024648994}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 571490386}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: RestartPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1024648994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6159,7 +6173,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2076999962}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 571490386}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: QuitPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2076999962
 MonoBehaviour:
   m_ObjectHideFlags: 0

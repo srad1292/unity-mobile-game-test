@@ -8,11 +8,14 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float playerSpeed = 200f;
     [SerializeField] float tapThrust = 200f;
+    [SerializeField] int placersToPlace = 4;
+    [SerializeField] GameUI gameUI;
 
     Rigidbody2D myRigidBody2d;
 
     private Vector3 movementInput;
     private List<Placer> heldPlacers;
+    private int placersPlaced = 0;
 
     private void Start() {
         heldPlacers = new List<Placer>();
@@ -56,6 +59,15 @@ public class Player : MonoBehaviour
     private void FillGoal(Goal goal, int placerIndex) {
         heldPlacers[placerIndex].SetPlacer(goal);
         heldPlacers.RemoveAt(placerIndex);
+        placersPlaced++;
+        if(placersPlaced == placersToPlace) {
+            StartCoroutine(EndGame());
+        }
+    }
+
+    IEnumerator EndGame() {
+        yield return new WaitForSeconds(1.2f);
+        gameUI.HandleGameOver();
     }
 
 
