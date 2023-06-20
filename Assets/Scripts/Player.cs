@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     Rigidbody2D myRigidBody2d;
 
     private Vector3 movementInput;
-    private Placer held;
     private List<Placer> heldPlacers;
 
     private void Start() {
@@ -28,8 +27,6 @@ public class Player : MonoBehaviour
     private void MovePlayer() {
         myRigidBody2d.velocity = movementInput * playerSpeed * Time.fixedDeltaTime;
         if (movementInput != Vector3.zero && heldPlacers.Count > 0) {
-            // This works, maybe I could switch it back to array and just do moveInput * (-1f * (index+1)) 
-            //held.transform.position = transform.position + (movementInput * -1f);
             for (int idx = 0; idx < heldPlacers.Count; idx++) {
                 heldPlacers[idx].transform.position = transform.position + (movementInput * -0.6f * (idx+1));
             }
@@ -48,11 +45,8 @@ public class Player : MonoBehaviour
             }
         }
         else if (other.tag == "Placer") {
-            print("I hit a placer!");
             Placer placer = other.GetComponent<Placer>();
             placer.Pickup();
-            //held = placer;
-            //held.transform.position = transform.position + (movementInput * -1f);
             heldPlacers.Add(placer);
             heldPlacers[heldPlacers.Count-1].transform.position = transform.position + (movementInput * -0.6f * (heldPlacers.Count));
 
