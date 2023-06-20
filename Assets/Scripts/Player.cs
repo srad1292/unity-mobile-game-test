@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float playerSpeed = 100f;
-    [SerializeField] float tapThrust = 100f;
+    [SerializeField] float playerSpeed = 200f;
+    [SerializeField] float tapThrust = 200f;
 
     Rigidbody2D myRigidBody2d;
 
